@@ -14,7 +14,7 @@ public class Panel extends JPanel implements ActionListener {
 
     public Panel() {
         dimension = new Dimension();
-        addKeyListener(new PlayerKeyAdapter());
+        addKeyListener(new CustomKeyAdapter());
         setBackground(Color.black);
         setFocusable(true);
 
@@ -33,7 +33,10 @@ public class Panel extends JPanel implements ActionListener {
 
     private void step() {
         dimension = getSize();
-        player.update();
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+        Position mouseScreenPosition = new Position(
+            mousePoint.x - getLocationOnScreen().x, mousePoint.y - getLocationOnScreen().y);
+        player.update(mouseScreenPosition);
         repaint();
     }
 
@@ -48,20 +51,14 @@ public class Panel extends JPanel implements ActionListener {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         player.render(g2D);
-            rayRenderer.renderRays(g2D, player, wallManager.getWalls());
+        rayRenderer.renderRays(g2D, player, wallManager.getWalls());
         wallManager.renderWalls(g2D);
     }
 
-    private class PlayerKeyAdapter extends KeyAdapter {
+    private class CustomKeyAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            player.keyPressed(e);
             wallManager.keyPressed(e, dimension.width, dimension.height);
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            player.keyReleased(e);
         }
     }
 }
