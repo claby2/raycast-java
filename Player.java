@@ -61,6 +61,10 @@ public class Player {
         }
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     private Ellipse2D getEllipse() {
         return new Ellipse2D.Double(position.x - RADIUS, position.y - RADIUS, RADIUS, RADIUS);
     }

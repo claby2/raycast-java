@@ -23,4 +23,12 @@ public class Wall {
         g2D.setStroke(new BasicStroke(3));
         g2D.draw(new Line2D.Double(startPosition.x, startPosition.y, endPosition.x, endPosition.y));
     }
+
+    public Position getStartPosition() {
+        return startPosition;
+    }
+
+    public Position getEndPosition() {
+        return endPosition;
+    }
 }

@@ -8,6 +8,7 @@ CLASSES = \
 		  Panel.java       \
 		  Player.java      \
 		  Position.java    \
+		  RayRenderer.java \
 		  Wall.java        \
 		  WallManager.java \
 		  Main.java        \

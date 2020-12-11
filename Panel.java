@@ -10,6 +10,7 @@ public class Panel extends JPanel implements ActionListener {
 
     private Player player;
     private WallManager wallManager;
+    private RayRenderer rayRenderer;
 
     public Panel() {
         dimension = new Dimension();
@@ -17,8 +18,9 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.black);
         setFocusable(true);
 
-        player = new Player(30.0, 50.0, 50.0, 5.0);
+        player = new Player(30.0, 100.0, 100.0, 5.0);
         wallManager = new WallManager(10, dimension.width, dimension.height);
+        rayRenderer = new RayRenderer();
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -46,6 +48,7 @@ public class Panel extends JPanel implements ActionListener {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         player.render(g2D);
+            rayRenderer.renderRays(g2D, player, wallManager.getWalls());
         wallManager.renderWalls(g2D);
     }
 

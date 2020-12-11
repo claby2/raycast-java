@@ -35,6 +35,10 @@ public class WallManager {
         }
     }
 
+    public ArrayList<Wall> getWalls() {
+        return walls;
+    }
+
     private void instantiateWalls() {
         for (int i = 0; i < numberOfWalls; ++i) {
             walls.add(getRandomWall());
